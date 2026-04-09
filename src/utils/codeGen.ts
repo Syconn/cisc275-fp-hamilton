@@ -7,10 +7,6 @@ import type {
     SecondaryDataclass,
 } from "../types";
 
-function generateId(): string {
-    return Math.random().toString(36).substring(2, 9);
-}
-
 function formatType(type: string): string {
     return type;
 }
@@ -127,14 +123,6 @@ function generatePageFunction(
 
     return `@route\ndef ${pageName}(${params}) -> Page:\n${stateChangeComment}${annotationComments}    return Page(\n${routeComments}        [\n${componentLines || "            # No components"}\n        ]\n    )\n`;
 }
-
-function _generateId(): string {
-    return generateId();
-}
-
-// suppress unused warning
-const _unused = _generateId;
-void _unused;
 
 export function generatePythonCode(project: Project): string {
     const stateClassName = project.stateModel.name || "State";
